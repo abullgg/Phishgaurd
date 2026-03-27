@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Analysis | PhishGuard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+
+<body class="gradient-bg min-h-screen text-white">
+
+<!-- NAVBAR -->
+<nav class="glass-effect">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <i class="fas fa-shield-alt text-2xl text-blue-400"></i>
+            <span class="text-xl font-bold">PhishGuard</span>
+        </div>
+        <a href="{% url 'data' %}" class="text-blue-400 hover:underline">Back</a>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="max-w-3xl mx-auto px-6 py-12">
+
+    <h1 class="text-3xl font-bold mb-2">Detailed URL Analysis</h1>
+    <p class="text-gray-300 mb-8">
+        This page explains how the submitted URL was evaluated by the system.
+    </p>
+
+    <!-- SCAN SUMMARY -->
+    <div class="glass-effect rounded-xl p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-cyan-400">
+            Scan Summary
+        </h2>
+
+        <p class="mb-3">
+            <span class="text-blue-400 font-semibold">Submitted URL:</span><br>
+            <span class="break-all text-gray-200">{{ url }}</span>
+        </p>
+
+        <p>
+            <span class="text-blue-400 font-semibold">Risk Verdict:</span>
+            {% if result == "bad" %}
+                <span class="text-red-400 font-bold">High Risk</span>
+            {% else %}
+                <span class="text-green-400 font-bold">Low Risk</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <!-- HOW ANALYSIS WORKS -->
+    <div class="glass-effect rounded-xl p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-cyan-400">
+            How This URL Was Analyzed
+        </h2>
+
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+            <li>The URL text was analyzed using a machine learning model</li>
+            <li>Suspicious lexical patterns were compared against trained data</li>
+            <li>No page content or user data was accessed</li>
+            <li>No third-party blacklist or reputation APIs were used</li>
+        </ul>
+    </div>
+
+    <!-- WHY RESULT -->
+    <div class="glass-effect rounded-xl p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-cyan-400">
+            Why This Result Was Shown
+        </h2>
+
+        {% if result == "bad" %}
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+            <li>The URL structure matched known phishing patterns</li>
+            <li>Unusual domain or path characteristics were detected</li>
+            <li>The system classified the URL as potentially unsafe</li>
+        </ul>
+        {% else %}
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+            <li>No strong phishing-related patterns were detected</li>
+            <li>The URL structure appeared similar to legitimate websites</li>
+            <li>This does not guarantee the site is completely safe</li>
+        </ul>
+        {% endif %}
+    </div>
+
+    <!-- LIMITATIONS -->
+    <div class="glass-effect rounded-xl p-6 border border-yellow-500">
+        <h2 class="text-xl font-semibold mb-4 text-yellow-400">
+            Important Limitations
+        </h2>
+
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+            <li>Modern phishing sites may avoid obvious URL patterns</li>
+            <li>Shortened or redirected URLs may hide final destinations</li>
+            <li>The system does not inspect webpage content</li>
+            <li>Always verify links before entering sensitive information</li>
+        </ul>
+    </div>
+
+    <!-- BACK BUTTON -->
+    <div class="mt-10">
+       <a href="{% url 'data' %}" class="text-blue-400 hover:underline">Back</a>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

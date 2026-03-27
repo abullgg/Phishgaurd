@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detected - PhishGuard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #991b1b 0%, #dc2626 50%, #b91c1c 100%);
+        }
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .shake-animation {
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .accent-red {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-shield-alt text-3xl accent-red"></i>
+                    <span class="text-2xl font-bold text-white">PhishGuard</span>
+                </div>
+                <a href="/" class="bg-white text-red-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Result Card -->
+        <div class="glass-effect rounded-xl p-12 text-center">
+            <!-- Warning Icon -->
+            <div class="shake-animation mb-8">
+                <i class="fas fa-exclamation-triangle text-8xl text-yellow-400"></i>
+            </div>
+
+            <!-- Result Message -->
+            <h1 class="text-4xl font-bold text-white mb-4">Phishing Website Detected!</h1>
+            <p class="text-xl text-gray-300 mb-8">
+                <strong>Warning!</strong> This website shows characteristics of a phishing site. 
+                Do not enter personal information, passwords, or financial details.
+            </p>
+
+            <!-- Warning Details -->
+            <div class="bg-red-500 bg-opacity-20 border border-red-500 border-opacity-30 rounded-xl p-6 mb-8">
+                <h3 class="text-lg font-semibold text-white mb-4">
+                    <i class="fas fa-shield-alt mr-2 text-red-400"></i>
+                    What to do now:
+                </h3>
+                <ul class="text-left text-gray-300 space-y-2">
+                    <li><i class="fas fa-times text-red-400 mr-2"></i>Do not enter any personal information</li>
+                    <li><i class="fas fa-times text-red-400 mr-2"></i>Do not download any files from this site</li>
+                    <li><i class="fas fa-times text-red-400 mr-2"></i>Close this website immediately</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Report this website to authorities if needed</li>
+                </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="data" class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-search mr-2"></i>
+                    Check Another URL
+                </a>
+                <a href="{% url 'analysis' %}" class="border-2 border-green-400 text-green-400 px-8 py-3 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-colors">
+                    <i class="fas fa-cogs mr-2"></i>
+                    Detailed Analysis
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - PhishGuard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #000000 100%);
+        }
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .stat-card {
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .accent-blue {
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-shield-alt text-3xl accent-blue"></i>
+                    <span class="text-2xl font-bold text-white">PhishGuard Admin</span>
+                </div>
+                <a href="login" class="bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-4xl font-bold text-white mb-4">Admin Dashboard</h1>
+            <p class="text-gray-300 text-lg">
+                Monitor phishing detection activity and system performance
+            </p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid md:grid-cols-4 gap-6 mb-12">
+            <div class="glass-effect rounded-xl p-6 stat-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-300 text-sm font-medium">Total Checks</p>
+                        <p class="text-3xl font-bold text-white">1,247</p>
+                        <p class="text-green-400 text-sm">+12% from last month</p>
+                    </div>
+                    <i class="fas fa-chart-bar text-3xl text-blue-400"></i>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-xl p-6 stat-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-300 text-sm font-medium">Phishing Detected</p>
+                        <p class="text-3xl font-bold text-white">89</p>
+                        <p class="text-red-400 text-sm">-5% from last month</p>
+                    </div>
+                    <i class="fas fa-exclamation-triangle text-3xl text-red-400"></i>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-xl p-6 stat-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-300 text-sm font-medium">Safe Websites</p>
+                        <p class="text-3xl font-bold text-white">1,158</p>
+                        <p class="text-green-400 text-sm">+15% from last month</p>
+                    </div>
+                    <i class="fas fa-check-circle text-3xl text-green-400"></i>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-xl p-6 stat-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-300 text-sm font-medium">Active Users</p>
+                        <p class="text-3xl font-bold text-white">156</p>
+                        <p class="text-green-400 text-sm">+8% from last month</p>
+                    </div>
+                    <i class="fas fa-users text-3xl text-cyan-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Table -->
+        <div class="glass-effect rounded-xl p-8">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Recent Detection Activity</h2>
+                    <p class="text-gray-300">Latest phishing detection results from users</p>
+                </div>
+                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-download mr-2"></i>
+                    Export Data
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-slate-600">
+                            <th class="text-left text-gray-300 font-semibold py-3">URL</th>
+                            <th class="text-left text-gray-300 font-semibold py-3">Result</th>
+                            <th class="text-left text-gray-300 font-semibold py-3">User</th>
+                            <th class="text-left text-gray-300 font-semibold py-3">Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in phishing %}
+                        <tr class="border-b border-slate-700">
+                            <td class="py-4 text-white font-mono text-sm max-w-xs truncate">{{i.url}}</td>
+                            <td class="py-4">
+                                {% if i.output == "Phishing" %}
+                                    <span class="bg-red-500 bg-opacity-20 text-red-400 px-3 py-1 rounded-full text-sm font-semibold border border-red-500 border-opacity-30">
+                                        <i class="fas fa-exclamation-triangle mr-1"></i>
+                                        Phishing
+                                    </span>
+                                {% else %}
+                                    <span class="bg-green-500 bg-opacity-20 text-green-400 px-3 py-1 rounded-full text-sm font-semibold border border-green-500 border-opacity-30">
+                                        <i class="fas fa-check mr-1"></i>
+                                        Safe
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="py-4 text-gray-300">user_{{forloop.counter}}</td>
+                            <td class="py-4 text-gray-400 text-sm">2024-01-15 10:30:00</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="py-8 text-center text-gray-400">
+                                <i class="fas fa-inbox text-4xl mb-4 block"></i>
+                                <p>No detection results yet</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

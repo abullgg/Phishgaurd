@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard - Website Phishing Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: translateY(-5px);
+        }
+        .accent-blue {
+            color: #3b82f6;
+        }
+        .accent-cyan {
+            color: #06b6d4;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-shield-alt text-3xl accent-blue"></i>
+                    <span class="text-2xl font-bold text-white">PhishGuard</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="login" class="text-white hover:text-blue-400 transition-colors">Login</a>
+                    <a href="admin/" class="text-white hover:text-blue-400 transition-colors">Admin</a>
+                    <a href="register" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                Detect Phishing
+                <span class="accent-cyan">Websites</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Protect yourself from malicious websites with our advanced AI-powered phishing detection system. 
+                Get instant results and stay secure online.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="register" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-colors">
+                    Start Detection
+                </a>
+                <a href="#features" class="border-2 border-blue-400 text-blue-400 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-600 hover:text-white transition-colors">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">Why Choose PhishGuard?</h2>
+                <p class="text-gray-300 text-lg">Advanced protection with cutting-edge technology</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-effect rounded-xl p-8 text-center hover-scale">
+                    <i class="fas fa-brain text-5xl accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-4">AI-Powered Detection</h3>
+                    <p class="text-gray-300">
+                        Advanced machine learning algorithms analyze multiple website parameters 
+                        to provide accurate phishing detection.
+                    </p>
+                </div>
+                
+                <div class="glass-effect rounded-xl p-8 text-center hover-scale">
+                    <i class="fas fa-bolt text-5xl accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-4">Real-time Analysis</h3>
+                    <p class="text-gray-300">
+                        Get instant results with our real-time website analysis. 
+                        No waiting, no delays - just immediate protection.
+                    </p>
+                </div>
+                
+                <div class="glass-effect rounded-xl p-8 text-center hover-scale">
+                    <i class="fas fa-lock text-5xl accent-cyan mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-4">Secure & Private</h3>
+                    <p class="text-gray-300">
+                        Your data is encrypted and secure. We don't store your URLs 
+                        or personal information beyond what's necessary.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-20">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white mb-6">
+                Ready to Secure Your Browsing?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Join thousands of users who trust PhishGuard to keep them safe online.
+            </p>
+            <a href="register" class="bg-blue-600 text-white px-12 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-colors inline-block">
+                Get Started Now
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+# PhishGuard 🛡️
+
+PhishGuard is a full-stack **Machine Learning** application built with Django that detects and prevents zero-day phishing links using lexical URL analysis. 
+
+![Dependencies](https://img.shields.io/badge/dependencies-Django%20|%20scikit--learn-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+---
+
+## 🚀 Features
+
+- **Lexical ML Evaluation:** Bypasses traditional blocklists by analyzing the URL syntax dynamically via a Custom `TfidfVectorizer` and `LogisticRegression` pipeline.
+- **Glassmorphism UI:** Built with premium Tailwind CSS styling to ensure a polished user experience.
+- **Admin Dashboard:** Caches and reports previously checked URLs to an internal tracking portal for active monitoring.
+- **RESTful API Endpoint:** Interact with the phishing prediction engine programmatically by parsing JSON requests through `/api/predict`.
+
+---
+
+## 🛠️ Stack
+
+- **Backend:** Python, Django 4.x
+- **Frontend:** HTML5, Tailwind CSS, FontAwesome
+- **Data Science / ML:** Scikit-Learn, Pandas, NLTK, Joblib
+
+---
+
+## ⚙️ Installation & Local Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/YourUsername/PhishGuard.git
+   cd PhishGuard
+   ```
+
+2. **Create and activate a virtual environment:**
+   ```bash
+   python -m venv venv
+   # On Windows:
+   venv\Scripts\activate
+   ```
+
+3. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run Migrations:**
+   ```bash
+   python manage.py migrate
+   ```
+
+5. **Start the local server:**
+   ```bash
+   python manage.py runserver
+   ```
+   *Navigate to `http://127.0.0.1:8000/` in your browser.*
+
+---
+
+## 🔌 API Documentation
+
+You can hit the backend evaluation logic without using the UI.
+**Endpoint:** `POST /api/predict`
+
+**Payload Content-Type:** `application/x-www-form-urlencoded` or `application/json`
+
+**Example Request:**
+```bash
+curl -X POST http://127.0.0.1:8000/api/predict/ \
+     -d "url=http://secure-update-paypal.com/login"
+```
+
+**JSON Response:**
+```json
+{
+  "url": "http://secure-update-paypal.com/login",
+  "result": "Phishing",
+  "confidence_score": 0.893
+}
+```
+
+---
+
+## 🧠 Retraining the Model
+
+To ensure you have the latest metrics, you can retrain the `.pkl` artifact from scratch against the provided datasets.
+```bash
+python scripts/train_model.py
+```
+This script will construct a TF-IDF vector matrix over `datasets/Phishing.csv` and dump the resulting pipeline directly into `ml_models/`.
