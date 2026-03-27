@@ -1,4 +1,4 @@
-# PhishGuard 🛡️
+# PhishGuard 
 
 PhishGuard is a full-stack **Machine Learning** application built with Django that detects and prevents zero-day phishing links using lexical URL analysis. 
 
@@ -7,7 +7,7 @@ PhishGuard is a full-stack **Machine Learning** application built with Django th
 
 ---
 
-## 🚀 Features
+##  Features
 
 - **Lexical ML Evaluation:** Bypasses traditional blocklists by analyzing the URL syntax dynamically via a Custom `TfidfVectorizer` and `LogisticRegression` pipeline.
 - **Glassmorphism UI:** Built with premium Tailwind CSS styling to ensure a polished user experience.
@@ -16,7 +16,7 @@ PhishGuard is a full-stack **Machine Learning** application built with Django th
 
 ---
 
-## 🛠️ Stack
+##  Stack
 
 - **Backend:** Python, Django 4.x
 - **Frontend:** HTML5, Tailwind CSS, FontAwesome
@@ -24,7 +24,7 @@ PhishGuard is a full-stack **Machine Learning** application built with Django th
 
 ---
 
-## ⚙️ Installation & Local Setup
+##  Installation & Local Setup
 
 1. **Clone the repository:**
    ```bash
@@ -57,7 +57,7 @@ PhishGuard is a full-stack **Machine Learning** application built with Django th
 
 ---
 
-## 🔌 API Documentation
+##  API Documentation
 
 You can hit the backend evaluation logic without using the UI.
 **Endpoint:** `POST /api/predict`
@@ -81,7 +81,7 @@ curl -X POST http://127.0.0.1:8000/api/predict/ \
 
 ---
 
-## 🧠 Retraining the Model
+##  Retraining the Model
 
 To ensure you have the latest metrics, you can retrain the `.pkl` artifact from scratch against the provided datasets.
 ```bash
