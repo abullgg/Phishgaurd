@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-uo-1#$cqxy-xt^)k78#e2-#_j=3y+*%v=iz5nxd$783^f--_21
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
 
 
 # Application definition
