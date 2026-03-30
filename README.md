@@ -9,9 +9,10 @@ PhishGuard is a full-stack **Machine Learning** application built with Django th
 
 ## 🚀 Features
 
-- **Lexical ML Evaluation:** Bypasses traditional blocklists by analyzing the URL syntax dynamically via a Custom `TfidfVectorizer` and `LogisticRegression` pipeline.
+- **Lexical ML Evaluation:** Bypasses traditional blocklists by analyzing the URL syntax dynamically via a Custom `TfidfVectorizer` and `LogisticRegression` pipeline. Evaluates probabilities against a strict `0.55` threshold for accurate zero-day detection.
+- **High-Performance Inference Engine:** The ML pipeline (`phishing_model.pkl`) is loaded globally upon server initialization via `services/ml_engine.py`, guaranteeing instant, zero-latency inference without disk I/O bottlenecks. 
 - **Glassmorphism UI:** Built with premium Tailwind CSS styling to ensure a polished user experience.
-- **Admin Dashboard:** Caches and reports previously checked URLs to an internal tracking portal for active monitoring.
+- **Advanced Admin Tracking Dashboard:** Caches and reports predicted URLs, storing precise `confidence_score` metrics and timestamped (`added_on`) audit trails in an internal portal for active monitoring.
 - **RESTful API Endpoint:** Interact with the phishing prediction engine programmatically by parsing JSON requests through `/api/predict`.
 
 ---
