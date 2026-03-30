@@ -58,6 +58,23 @@ PhishGuard is a full-stack **Machine Learning** application built with Django th
 
 ---
 
+## ☁️ Deployment (Render)
+
+This project is fully configured for a seamless deployment to [Render](https://render.com). It utilizes `gunicorn` for serving the WSGI application and `whitenoise` for serving static Tailwind CSS files.
+
+1. Set up a new **Web Service** on Render connected to this repository.
+2. Under "Build Command", enter:
+   ```bash
+   sh build.sh
+   ```
+3. Under "Start Command", enter:
+   ```bash
+   gunicorn Phishing.wsgi
+   ```
+4. Click **Deploy**!
+
+---
+
 ##  API Documentation
 
 You can hit the backend evaluation logic without using the UI.
