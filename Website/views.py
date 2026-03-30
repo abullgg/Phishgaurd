@@ -22,17 +22,18 @@ def register(request):
 
         if password == c_password:
             if User.objects.filter(username=username).exists():
-                messages.info(request, 'Username already exists')
+                messages.error(request, 'Username already exists')
             elif User.objects.filter(email=email).exists():
-                messages.info(request, 'Email already exists')
+                messages.error(request, 'Email already exists')
             else:
                 user = User.objects.create_user(first_name=firstName, last_name=lastName, email=email, username=username, password=password)
                 user.save()
-                return render(request, 'login.html')
+                messages.success(request, 'Account created successfully! Please sign in.')
+                return redirect('login')
         else:
-            messages.info(request, 'Passwords do not match')
+            messages.error(request, 'Passwords do not match')
 
-        return render(request, 'register.html')
+        return redirect('register')
     return render(request, 'register.html')
 
 def login(request):
@@ -41,11 +42,12 @@ def login(request):
         password = request.POST.get('password')
 
         user = auth.authenticate(username=username, password=password)
-        if user:
-            return render(request, 'data.html')
+        if user is not None:
+            auth.login(request, user)
+            return redirect('data')
         else:
-            messages.info(request, 'Invalid credentials')
-            return render(request, 'login.html')
+            messages.error(request, 'Invalid credentials')
+            return redirect('login')
     return render(request, 'login.html')
 
 def logout(request):

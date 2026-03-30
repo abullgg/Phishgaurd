@@ -38,6 +38,16 @@
                 <p class="text-gray-300">Join PhishGuard to start protecting yourself online</p>
             </div>
 
+            {% if messages %}
+            <div class="mb-4 space-y-2">
+                {% for message in messages %}
+                <div class="p-3 rounded-lg text-sm text-center font-medium {% if message.tags == 'error' %}bg-red-500 bg-opacity-20 border border-red-500 text-red-300{% elif message.tags == 'success' %}bg-green-500 bg-opacity-20 border border-green-500 text-green-300{% else %}bg-blue-500 bg-opacity-20 border border-blue-500 text-blue-300{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
             <form method="POST" class="space-y-4">
                 {% csrf_token %}
                 <div class="grid grid-cols-2 gap-4">
