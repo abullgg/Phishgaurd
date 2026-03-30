@@ -52,7 +52,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request, "index.html")
+    return redirect('index')
 
 def detailed_analysis(request):
     if 'result' not in request.session:
